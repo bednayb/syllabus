@@ -3,7 +3,7 @@
 var test = require('tape');
 var index = require('./index');
 
-tape('true', function(t) {
+test('true', function(t) {
   t.equal(true, true);
   t.end();
 });

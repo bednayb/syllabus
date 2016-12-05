@@ -1,0 +1,11 @@
+{
+  "name": "index",
+  "version": "1.0.0",
+  "description": "javascript dojo 1/1",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js | faucet"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -9,7 +9,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+<<<<<<< 35913f0bcd1b5a320a404d9e307bd2c7ade6a423
     "jquery": "^3.1.1",
+=======
+>>>>>>> feat(dojo): duplicate index instead of move
     "tape": "^4.6.3"
   }
 }

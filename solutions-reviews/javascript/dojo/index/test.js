@@ -13,4 +13,4 @@ test('invalid param', function(t) {
 		index('asdf', 'a')
 	}, 'Please don\'t give me string.')
   	t.end();
-})
+});

@@ -1,21 +1,7 @@
-# Tuesday - Arrays and Objects 
+# JavaScript 
+Functions, Arrays, Objects 
 
-## Materials for this day
- - https://www.youtube.com/watch?v=lK42xIMcA0Y
- - https://www.youtube.com/watch?v=xHLd36QoS4k
- - http://javascript.info/tutorial/functions-declarations-and-expressions
- - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
-   - till the properties chapter
- - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat
- - http://colintoh.com/blog/5-array-methods-that-you-should-use-today
-   - expect Demethodizing chapter
- - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every
- - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some
- - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects 
-   - except getters and setters chapter
- - https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/switch
-
-### Assignment review
+### Material review
  - switch
  - function expressions
    - function as variable

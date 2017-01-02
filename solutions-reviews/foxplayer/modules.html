@@ -1,0 +1,60 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Foxplayer</title>
+	<style>
+		.play{
+			font-size:2rem
+		}
+	</style>
+</head>
+<body>
+	<h1>Module example</h1>
+	<ul id="tracks"></ul>
+	<div id="controls">
+		<div class="play">&#9654;</div>
+	</div>
+
+	<script>
+		var tracks = ['Track #1','Track #2','Track #3','Track #4','Track #5','Track #6']
+
+		var tracksModule = (function ( items ) {
+			var node = document.getElementById('tracks');
+
+			function renderTracks() {
+				items.forEach(function(i){
+					var li = document.createElement('li');
+					li.innerHTML = i;
+					node.appendChild(li);
+
+					li.addEventListener('click', function(){
+						controlPanel.toggleIcon();
+					});
+				});
+			}
+
+			return {
+				render: renderTracks
+			}
+		})(tracks);
+
+
+		var controlPanel = (function () {
+			var node = document.querySelector('#controls .play');
+			var isPlaying = false;
+
+			function togglePlayIcon() {
+				isPlaying = !isPlaying;
+				node.innerHTML = (isPlaying == true) ? '&#9208;' : '&#9654;';
+			}
+
+			return {
+				toggleIcon: togglePlayIcon
+			}
+		})();
+
+
+		tracksModule.render();
+	</script>
+</body>
+</html>

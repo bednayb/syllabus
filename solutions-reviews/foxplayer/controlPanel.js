@@ -12,6 +12,8 @@
  	var prevButton = root.querySelector('.prev');
  	var nextButton = root.querySelector('.next');
  	var playButton = root.querySelector('.play');
+ 	var seekBar = root.querySelector('input');
+ 	var timerLabel = root.querySelector('.timer');
  	var loadButton = root.querySelector('button'); // This is temporary
 
  	loadButton.addEventListener('click', function(){
@@ -31,11 +33,21 @@
 
  	function load(fileName) {
 		Audio.load(trackDir + fileName);
-		// audio.onUpdate( logUpdate );
+
+		Audio.onUpdate(function( percent, time ){
+			seekBar.value = percent;
+			timerLabel.innerHTML = format(time);
+		});
 		// audio.onComplete(function(){
 		// 	console.log('READY');
 		// });
  	}
+
+	function format(s) {
+        var s = Math.floor((s) % 60);
+        if (s < 10) { s = "0"+s; }
+        return Math.floor(s/60) + ":" + s;
+	}
 
  	return {
  		// play: play

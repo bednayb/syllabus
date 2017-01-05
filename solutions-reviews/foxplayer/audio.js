@@ -17,7 +17,8 @@ var Audio = (function () {
 	var endCallback = function(){};
 
 	audioNode.addEventListener('timeupdate', function(){
-		timeCallback(audioNode.currentTime / audioNode.duration * 100);
+		var percent = audioNode.currentTime / audioNode.duration * 100;
+		timeCallback( percent, audioNode.currentTime );
 	});
 
 	audioNode.addEventListener('ended', function(){

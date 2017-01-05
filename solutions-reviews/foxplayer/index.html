@@ -7,12 +7,14 @@
 	<script src="ajax.js"></script>
 	<script src="audio.js"></script>
 	<script>
-		audio.load('file:///C:/Music/Akufen/My%20Way/03%20Skidoos.mp3')
+		audio.load('file:///C:/Music/Akufen/My%20Way/03%20Skidoos.mp3');
 		audio.play();
 
-		audio.onUpdate(function( time ){
+		function logUpdate( time ){
 			console.log(time);
-		});
+			// slider should be updated here
+		}
+		audio.onUpdate( logUpdate );
 
 		audio.onComplete(function(){
 			console.log('READY');

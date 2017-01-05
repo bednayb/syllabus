@@ -6,5 +6,23 @@
 <body>
 	<script src="ajax.js"></script>
 	<script src="audio.js"></script>
+	<script>
+		audio.load('file:///C:/Music/Akufen/My%20Way/03%20Skidoos.mp3')
+		audio.play();
+
+		audio.onUpdate(function( time ){
+			console.log(time);
+		});
+
+		audio.onComplete(function(){
+			console.log('READY');
+		});
+
+		setTimeout(function () {
+			audio.seek(99);
+			// audio.pause()
+		}, 100);
+
+	</script>
 </body>
 </html>

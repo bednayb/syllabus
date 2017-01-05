@@ -39,7 +39,6 @@
 
 		var tracksModule = ( function( items ){
 			var node = document.getElementById('tracks');
-			var _ = this;
 			var events = new EventBus();
 
 			function renderTracks() {
@@ -47,12 +46,12 @@
 					var li = document.createElement('li');
 					li.innerHTML = i;
 					node.appendChild(li);
-
 					li.addEventListener('click', function(){
 						/**
 						 * Triggers an event on itself
 						 */
-						events.trigger('hello');
+						events.trigger('play-track');
+						// controlPanel.toggleIcon();
 					});
 				});
 			}
@@ -71,15 +70,11 @@
 			/**
 			 * Subscribing to tracksModule's events
 			 */
-			tracksModule.events.on('hello', togglePlayIcon );
+			tracksModule.events.on('play-track', togglePlayIcon );
 
 			function togglePlayIcon() {
 				isPlaying = !isPlaying;
 				node.innerHTML = (isPlaying == true) ? '&#9208;' : '&#9654;';
-			}
-
-			return {
-				toggleIcon: togglePlayIcon
 			}
 		})();
 

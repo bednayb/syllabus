@@ -1,0 +1,77 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Foxplayer</title>
+	<style>
+		.play{
+			font-size:2rem
+		}
+	</style>
+</head>
+<body>
+	<h1>Module example</h1>
+	<ul id="tracks"></ul>
+	<div id="controls">
+		<div class="play">&#9654;</div>
+	</div>
+
+	<script>
+		/**
+		* @author Erik Karlsson, www.nonobtrusive.com
+		*/
+		function Dispatcher(){
+			this.events=[];
+		}
+		Dispatcher.prototype.on=function(event,callback){
+			this.events[event] = this.events[event] || [];
+			if ( this.events[event] ) {
+				this.events[event].push(callback);
+			}
+		}
+		Dispatcher.prototype.off=function(event,callback){
+			if ( this.events[event] ) {
+				var listeners = this.events[event];
+				for ( var i = listeners.length-1; i>=0; --i ){
+					if ( listeners[i] === callback ) {
+						listeners.splice( i, 1 );
+						return true;
+					}
+				}
+			}
+			return false;
+		}
+		Dispatcher.prototype.trigger=function(event){
+			if ( this.events[event] ) {
+				var listeners = this.events[event], len = listeners.length;
+				while ( len-- ) {
+					listeners[len].bind(this)();	//callback with self
+				}		
+			}
+		}
+		 
+		 
+		/** Below is some test-code to verify the most basic functionality **/
+		function SomeClass(){
+			Dispatcher.call(this);
+			this.hello = 1;
+
+			this.on('hello', function(){
+				console.log('YAY', this)
+			})
+		}
+
+		SomeClass.prototype = new Dispatcher();
+		 
+		SomeClass.prototype.sendSomeEvent=function(){
+			this.trigger("test");
+		}
+		 
+		var foo = new SomeClass();
+
+		foo.on( "test", function(){ console.log("bah"); } )
+		foo.sendSomeEvent();
+
+		foo.trigger('hello');
+	</script>
+</body>
+</html>

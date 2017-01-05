@@ -1,10 +1,18 @@
 
 var Ajax = function (){
 
-	this.APIEndpoint = 'https://localhost:3000/';
+	this.APIEndpoint = 'http://localhost:3000/';
 
 	this.getPlaylists = function(callback) {
 		this.open('GET', 'playlists', false, callback);
+	}
+
+	this.createPlaylists = function(name,callback) {
+		this.open('POST', 'playlists', name, callback);
+	}
+
+	this.getTracks = function(playlistId, callback) {
+		this.open('GET', 'tracks', false, callback);
 	}
 
 	this.open = function(method, resource, data, callback) {

@@ -11,7 +11,7 @@
  *  - timeupdate: fires when music is playing
  *  - ended: fires when currentTime is duration
  */
-var audio = (function () {
+var Audio = (function () {
 	var audioNode = document.createElement('audio');
 	var timeCallback = function(){};
 	var endCallback = function(){};
@@ -49,12 +49,17 @@ var audio = (function () {
 		audioNode.currentTime = audioNode.duration * percent / 100;
 	}
 
+	function isPaused() {
+		return audioNode.paused;
+	}
+
 	return {
 		load: load,
 		play: play,
 		pause: pause,
 		seek: seek,
 		onUpdate: setUpdateEvent,
-		onComplete: setCompleteEvent
+		onComplete: setCompleteEvent,
+		paused: isPaused
 	}
 })();

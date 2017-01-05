@@ -4,27 +4,26 @@
 	<title>Foxplayer</title>
 </head>
 <body>
+	<article id="playlists">
+		<button>CREATE</button>
+		<ul></ul>
+	</article>
+	
+	<article id="cp">
+		<button>Load track</button>
+		<a href="#" class="prev">PREV</a>
+		<a href="#" class="play">PLAY</a>
+		<a href="#" class="next">NEXT</a>
+		<span class="timer">0:00</span>
+		<input type="range" min="0" max="100">
+	</article>
+
 	<script src="ajax.js"></script>
 	<script src="audio.js"></script>
+	<script src="playlists.js"></script>
+	<script src="controlPanel.js"></script>
 	<script>
-		audio.load('file:///C:/Music/Akufen/My%20Way/03%20Skidoos.mp3');
-		audio.play();
-
-		function logUpdate( time ){
-			console.log(time);
-			// slider should be updated here
-		}
-		audio.onUpdate( logUpdate );
-
-		audio.onComplete(function(){
-			console.log('READY');
-		});
-
-		setTimeout(function () {
-			// audio.seek(99);
-			// audio.pause()
-		}, 100);
-
+		Playlists.init();
 	</script>
 </body>
 </html>

@@ -10,8 +10,13 @@
         })
     }])
 
-  exampleModule.controller('LoginController', function() {
-    this.message = 'hi from angular'
-  })
+  exampleModule.controller('LoginController', ['$http', function($http) {
+    let vm = this
+    vm.message = 'hi from angular'
+    vm.getData = () => $http.get('http://localhost/bar')
+        .then(function(request) {
+          vm.barData = request.data;
+        });
+    }])
 
 })()

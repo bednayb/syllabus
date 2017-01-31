@@ -5,13 +5,25 @@ describe('Login controller', function() {
   beforeEach(function(){
     module('lasersExample');
 
-    inject(function($controller) {
+    inject(function($controller, $httpBackend) {
+      httpBackend = $httpBackend;
       LoginController = $controller('LoginController');
     })
   })
 
   it('should expose message', function() {
     expect(LoginController.message).toEqual('hi from angular');
+  })
+
+  it('should send request', function() {
+    httpBackend
+      .when('GET', 'http://localhost/bar')
+      .respond(200, { foo: 'bar' });
+
+    // expect(LoginController.getData).toBeDefined();
+    LoginController.getData()
+    httpBackend.flush()
+    expect(LoginController.barData).toEqual({ foo: 'bar' });
   })
 
   it('has a dummy spec to test 2 + 2', function() {

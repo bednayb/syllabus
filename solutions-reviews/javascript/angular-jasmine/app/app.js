@@ -6,12 +6,12 @@
       $routeProvider
         .when('/', {
           templateUrl: 'pages/login.html',
-          controller: 'mainController'
+          controller: 'LoginController as login'
         })
     }])
 
-  exampleModule.controller('mainController', ['$scope', function($scope) {
-    $scope.message = 'hi from angular'
-  }])
+  exampleModule.controller('LoginController', function() {
+    this.message = 'hi from angular'
+  })
 
 })()

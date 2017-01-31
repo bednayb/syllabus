@@ -15,29 +15,33 @@ describe('Login controller', function() {
     expect(LoginController.message).toEqual('hi from angular');
   })
 
-  it('should send request', function() {
-    httpBackend
-      .when('GET', 'http://localhost/bar')
-      .respond(200, { foo: 'bar' });
+  describe('getData', function () {
+    it('should be defined', function() {
+      expect(LoginController.getData).toBeDefined();
+    })
 
-    // expect(LoginController.getData).toBeDefined();
-    LoginController.getData()
-    httpBackend.flush()
-    httpBackend.expectGET('http://localhost/bar');
-  })
+    it('should send request', function() {
+      httpBackend
+        .when('GET', 'http://localhost/bar')
+        .respond(200, { foo: 'bar' });
 
-  it('should process response', function() {
-    httpBackend
-      .when('GET', 'http://localhost/bar')
-      .respond(200, { foo: 'bar' });
+      LoginController.getData()
+      httpBackend.flush()
+      httpBackend.expectGET('http://localhost/bar');
+    })
 
-    LoginController.getData()
-    httpBackend.flush()
-    expect(LoginController.barData).toEqual({ foo: 'bar' });
+    it('should process response', function() {
+      httpBackend
+        .when('GET', 'http://localhost/bar')
+        .respond(200, { foo: 'bar' });
+
+      LoginController.getData()
+      httpBackend.flush()
+      expect(LoginController.barData).toEqual({ foo: 'bar' });
+    })
   })
 
   it('has a dummy spec to test 2 + 2', function() {
-    // An intentionally failing test. No code within expect() will never equal 4.
     expect(2 + 2).toEqual(4);
   });
 });

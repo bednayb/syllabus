@@ -23,6 +23,16 @@ describe('Login controller', function() {
     // expect(LoginController.getData).toBeDefined();
     LoginController.getData()
     httpBackend.flush()
+    httpBackend.expectGET('http://localhost/bar');
+  })
+
+  it('should process response', function() {
+    httpBackend
+      .when('GET', 'http://localhost/bar')
+      .respond(200, { foo: 'bar' });
+
+    LoginController.getData()
+    httpBackend.flush()
     expect(LoginController.barData).toEqual({ foo: 'bar' });
   })
 

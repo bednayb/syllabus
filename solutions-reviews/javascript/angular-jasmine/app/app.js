@@ -13,9 +13,12 @@
   exampleModule.controller('LoginController', ['$http', function($http) {
     let vm = this
     vm.message = 'hi from angular'
-    vm.getData = () => $http.get('http://localhost/bar')
+    vm.isLoggedIn = false
+    vm.loginData = null
+    vm.postLogin = () => $http.post('/lobab/login')
         .then(function(request) {
-          vm.barData = request.data;
+          vm.isLoggedIn = true
+          vm.loginData = request.data
         });
     }])
 

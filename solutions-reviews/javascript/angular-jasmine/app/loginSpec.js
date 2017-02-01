@@ -1,6 +1,6 @@
 describe('Login controller', function() {
 
-  var LoginController;
+  var httpBackend, LoginController;
 
   beforeEach(function(){
     module('lasersExample');
@@ -11,33 +11,51 @@ describe('Login controller', function() {
     })
   })
 
-  it('should expose message', function() {
-    expect(LoginController.message).toEqual('hi from angular');
+  describe('message', function () {
+    it('should be exposed', function() {
+      expect(LoginController.message).toBeDefined();
+    })
+    it('should greet', function() {
+      expect(LoginController.message).toEqual('hi from angular');
+    })
+    it('cica should not be exposed', function() {
+      expect(LoginController.cica).not.toBeDefined();
+    })
   })
 
-  describe('getData', function () {
+  describe('postLogin', function () {
     it('should be defined', function() {
-      expect(LoginController.getData).toBeDefined();
+      expect(LoginController.postLogin).toBeDefined();
     })
 
     it('should send request', function() {
       httpBackend
-        .when('GET', 'http://localhost/bar')
+        .when('POST', '/lobab/login')
         .respond(200, { foo: 'bar' });
 
-      LoginController.getData()
+      LoginController.postLogin()
       httpBackend.flush()
-      httpBackend.expectGET('http://localhost/bar');
+      httpBackend.expectPOST('/lobab/login');
+    })
+
+    it('should log in user', function() {
+      httpBackend
+        .when('POST', '/lobab/login')
+        .respond(200, { foo: 'bar' });
+
+      LoginController.postLogin()
+      httpBackend.flush()
+      expect(LoginController.isLoggedIn).toBe(true);
     })
 
     it('should process response', function() {
       httpBackend
-        .when('GET', 'http://localhost/bar')
+        .when('POST', '/lobab/login')
         .respond(200, { foo: 'bar' });
 
-      LoginController.getData()
+      LoginController.postLogin()
       httpBackend.flush()
-      expect(LoginController.barData).toEqual({ foo: 'bar' });
+      expect(LoginController.loginData).toEqual({ foo: 'bar' });
     })
   })
 
